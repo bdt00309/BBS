@@ -23,10 +23,22 @@
 
 
 <%
-
-	if(user.getUserId() == null || user.getUserPasswd() == null || user.getUserName() ==null || 
-		user.getUserGender() == null || user.getUserEmail() == null) {
+	String userId = null;
+	if(session.getAttribute("userId") != null) {
+		userId = (String) session.getAttribute("userId");
+	}
+	
+	if(userId != null) {
 		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('이미 로그인이 되어있습니다.')");
+		script.println("location.href='main.jsp'");
+		script.println("</script>");
+	}	
+
+	if(user.getUserId() == null || user.getUserPasswd() == null || user.getUserName() ==null ||  
+		user.getUserGender() == null || user.getUserEmail() == null) {  // 아무것도 입력되지 않았을 때 null이 나오니까,
+		PrintWriter script = response.getWriter(); 
 		script.println("<script>");
 		script.println("alert('입력이 안 된 사항이 있습니다.')");
 		script.println("histiory.back()");
@@ -39,14 +51,14 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('이미 존재하는 아이디입니다.')");
-			script.println("histiory.go(-1)");
+			script.println("histiory.back()");
 			script.println("</script>");
 			
 		} else {
+			session.setAttribute("userId", user.getUserId());
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("location.href='main.jsp'");
-
 			script.println("</script>");
 			
 		} 

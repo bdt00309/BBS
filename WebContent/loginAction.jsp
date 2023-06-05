@@ -21,9 +21,25 @@
 
 
 <%
+
+	String userId = null;
+	if(session.getAttribute("userId") != null) {
+		userId = (String) session.getAttribute("userId");
+	}
+	
+	if(userId != null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('이미 로그인이 되어있습니다.')");
+		script.println("location.href='main.jsp'");
+		script.println("</script>");
+	}
+
 	UserDAO dao = new UserDAO();
 	int result = dao.login(user.getUserId(), user.getUserPasswd());
-	if(result ==1) {
+	
+	if(result ==1) {   // 로그인성공시 세션 부여 
+		session.setAttribute("userId", user.getUserId());
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("location.href='main.jsp'");

@@ -6,11 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-widht", initial-scale="1">
+<meta name="viewport" content="width=device-width", initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
+	<%
+		String userId = null;
+		if(session.getAttribute("userId") != null) {
+			userId = (String) session.getAttribute("userId");
+		}
+	%>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -28,8 +34,9 @@
 			</ul>
 			
 			<%
-				if(session.getAttribute("sessionId") == null) {
+				if(userId == null) {
 			%>
+			
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속하기<span class="caret"></span></a>
