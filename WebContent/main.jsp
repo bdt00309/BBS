@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width", initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
@@ -60,12 +61,19 @@
 			
 			<%		
 				}
-			
 			%>
-			
 		</div>
 	</nav>
-
+	<div class="container">
+		<div class="jumbotron">
+			<div class="container">
+				<h1>웹 사이트 소개</h1>
+				<p>이 웹사이트는 부트스트랩으로 만든 JSP 웹 사이트입니다. 최소한의 간단한 로직만을 이용해서 개발했습니다.<br>
+				디자인 템블릿으로는 부트스트랩을 이용했습니다.</p>
+				<p><a class="btn btn-primary btn-pull" href="#" role="button">자세히 알아보기</a></p>
+			</div>
+		</div>
+	</div>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
